@@ -1,59 +1,70 @@
 <template>
     <div class=" with-max-height">
         <div class="with-max-height-inner">
-    <div class="row d-flex px-2 no-margin">
-        <PageTitle page_name="Issuance"/>
+    <div class="row d-flex mx-2 no-margin">
+        
+        <PageTitle page_name="Documents"/>
     </div>
-    <div class="card w-100 d-flex w-100 p-4 mt-2 no-border position-relative">
-        <li class="text-dark px-2 custom-fw-bold f-14 sm-title mt-2">Issuance</li>
-        <form class="row d-flex">
-            <div class="col-6 p-4">
-                <div class="form-group w-75 mt-4">
-                    <label class="text-secondary custom-fw-bold f-14">Name</label>
-                    <input class="form-control" placeholder="Document Name" value="Title Deed 43" readonly>
-                </div>
-                <div class="form-group w-75 mt-4">
-                    <label class="text-secondary custom-fw-bold f-14">File Record No.</label>
-                    <input class="form-control" placeholder="2025/28" value="2025/28" readonly>
-                </div>
-                <div class="form-group w-75 mt-4">
-                    <label class="text-secondary custom-fw-bold f-14">Requested By</label>
-                    <input class="form-control" placeholder="John Doe" value="John Doe" readonly>
-                </div>
-                <div class="form-group w-75 mt-4">
-                    <label class="text-secondary custom-fw-bold f-14">Collecting Person</label>
-                    <select class="form-control">
-                        <option >Daniel Mbaraki</option>
-                        <option >John Mbugi</option>
-                    </select>
-                </div>
+    <div class="card w-100 d-flex w-100 px-2 mt-2 no-border">
+        <SubTitle title="Pending Documents"/>
+        <div class="w-100 d-flex flex-column scrollable-x">
+
+          <table class="table">
+            <thead>
+              <!-- inventory report -->
+              <tr>
+                <th scope="col f-15">Name</th>
+                <th scope="col f-15">
+                  Type
+                </th>
+                <th scope="col f-15">Status</th>
+                <th scope="col f-15">Date Requested</th>
+              </tr>
+             
+            </thead>
+            <tbody>
+              <tr v-for="(doc, index) in documents" :key="index">
+                <td class="f-14">{{ doc.name }}</td>
+                <td class="f-14">{{ doc.type }}</td>
+                <td class="f-14"><span class="status-check bg-danger"> {{ doc.status }} </span></td>
+                <td class="f-14">{{ doc.last_movement }}</td>
                 
-            </div>
-            <div class="col-6">
-                <div class="form-group w-75 mt-4">
-                    <label class="text-secondary custom-fw-bold f-14">Upload Issuance Form</label>
-                    <input type="file" class="form-control" placeholder="2025/28">
-                </div>
-                <div class="form-group w-75 mt-4">
-                    <label class="text-secondary custom-fw-bold f-14">Remarks</label>
-                    <textarea class="form-control vh-20" placeholder="Remarks"></textarea>
-                </div>
-                <div class="form-group w-75 mt-4">
-                    <button class="btn btn-primary">SAVE</button>
-                </div>
-            </div>
-        </form>
-        <ActionResponse message="Added successfully"/>
+              </tr>
+            </tbody>
+            
+          </table>
+
+        </div>
+        
     </div>
     </div>
     </div>
     </template>
     <script>
-    import PageTitle from '@/components/titles/PageTitle.vue';
-    import ActionResponse from '@/components/Response.vue'
+    // import ActionButton from '@/components/buttons/ActionButton.vue';
+import PageTitle from '@/components/titles/PageTitle.vue';
+import SubTitle from '@/components/titles/SubTitle.vue';
     export default{
-        name: "DocumentIssuance",
-        components: { PageTitle, ActionResponse}
+        name: "AllDocuments",
+        components: { PageTitle, /* ActionButton, */ SubTitle},
+        data(){
+          return{
+            documents: [
+              { name: "2024/1",
+              type: "Log book",
+              status: "Pending",
+              last_movement: "Apr 3" },
+              { name: "2024/2",
+              type: "Title Deed",
+              status: "Pending",
+              last_movement: "Apr 4" },
+              { name: "2024/3",
+              type: "Log book",
+              status: "Pending",
+              last_movement: "Apr 5" }
+          ]
+          }
+        }
     }
       
     </script>

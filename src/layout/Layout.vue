@@ -1,9 +1,9 @@
 <template>
     <div v-if="is_logged_in" class="main-page d-flex">
-      <NavBar v-if="is_shown" @toggle_nav_bar="toggle_nav_bar" />
+      <NavBar v-if="is_shown" @toggle_nav_bar="toggle_nav_bar" @logout="logout" />
       <!-- <div class="row col-10 h-100 d-flex no-align"> -->
       <div class="col-12">
-        <TopBar @toggle_nav_bar="toggle_nav_bar" />
+        <TopBar v-if="is_logged_in" @toggle_nav_bar="toggle_nav_bar" />
         <div class="page-body scrollable-page">
           <router-view/>
         </div>
@@ -11,7 +11,7 @@
     </div>
     <!-- login page -->
     <div v-else class="main-page d-flex">
-      <UserLogin/>
+      <UserLogin @login="login" />
     </div>
   </template>
   
@@ -25,8 +25,8 @@
     name: 'PageLayout',
     data() {
       return {
-        is_logged_in: true,
-        is_shown: false
+        is_logged_in: false,
+        is_shown: false,
       }
     },
     computed: {
@@ -36,7 +36,22 @@
     methods: {
       toggle_nav_bar(){
         this.is_shown = !this.is_shown
+      },
+      login(){
+        this.is_logged_in = true
+        //use local storage
+        localStorage.setItem("is_logged_in", this.is_logged_in)
+        this.$router.push('/home')
+
+      },
+      logout(){
+        this.is_logged_in = false
+        localStorage.setItem("is_logged_in", this.is_logged_in)
+        this.is_shown = false
       }
+    },
+    mounted(){
+      this.is_logged_in = localStorage.getItem("is_logged_in")
     }
   }
   </script>

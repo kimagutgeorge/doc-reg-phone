@@ -6,13 +6,15 @@
         <PageTitle page_name="Reports" child_page_name=" / Returns & Issuance"/>
     </div>
     <div class="card w-100 d-flex w-100 px-2 mt-2 no-border">
-        <li class="text-dark px-2 custom-fw-bold f-14 sm-title mt-2">{{report_title}}</li>
+      <SubTitle title="Return & Issuance"/>
+      
         <div class="col-12 d-flex flex-row-reverse">
           <div class="d-flex flex-no-wrap justify-content-end p-export float-right">
           <select class=" f-15 ms-2">
               <option value="Inventory Report">Export ESV</option>
               <option value="Movement Report">Export PDF</option>
           </select>
+          
           </div>
           <div class="d-flex flex-no-wrap justify-content-end p-sort float-right">
               <p class="text-secondary f-15">Sort:</p>
@@ -23,6 +25,7 @@
           </div>
           
       </div>
+      <div class="w-100 d-flex flex-column scrollable-x">
         <table class="table">
             <thead>
               <!-- inventory report -->
@@ -68,15 +71,18 @@
               </tr>
             </tbody>
           </table>
+        </div>
     </div>
     </div>
   </div>
     </template>
     <script>
-    import PageTitle from '@/components/titles/PageTitle.vue';
+    // import ActionButton from '@/components/buttons/ActionButton.vue';
+import PageTitle from '@/components/titles/PageTitle.vue';
+import SubTitle from '@/components/titles/SubTitle.vue';
     export default{
         name: "ReturnIssuance",
-        components: { PageTitle},
+        components: { PageTitle, /*ActionButton, */ SubTitle},
         data(){
           return {
             report_title: 'Issuance Log',

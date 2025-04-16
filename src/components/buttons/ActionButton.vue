@@ -1,6 +1,6 @@
 <template>
     <div class="custom-dropdown position-relative">
-      <span class="f-15 btn btn-primary" @click="toggleDropdown">
+      <span class="f-15 btn bg-white with-border" @click="toggleDropdown">
         Action <i class="fa-solid fa-angle-down"></i>
       </span>
       <transition name="slide-fade">

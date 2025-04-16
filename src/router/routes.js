@@ -11,10 +11,11 @@ import DocumentReports from '@/views/reports/DocumentReports.vue'
 import UserActivityReports from '@/views/reports/UserActivityReports.vue'
 import RequestDocuments from '@/views/reports/RequestReports.vue';
 import ReturnIssuance from '@/views/reports/ReturnIssuanceReports.vue';
-import AllUsers from '@/views/Users.vue';
+import AllUsers from '@/views/Profile.vue';
 import AddUser from '@/views/AddUser.vue';
 import UserRoles  from '@/views/Roles.vue';
 import UserDepartments  from '@/views/Departments.vue';
+import UserProfile from '@/views/Profile.vue'
 
 
 export default [
@@ -23,14 +24,14 @@ export default [
       component: () => import('@/layout/Layout.vue'),
       children: [
         {
-            path: '/',
+            path: '',
             name: 'UserHome',
             component: UserDashboard
         },
         { 
           path: '/home', 
           name: 'UserHome',
-          component: UserDashboard
+          component: UserDashboard,
         },
         {
             path: '/documents',
@@ -107,6 +108,11 @@ export default [
           name: 'Roles',
           component: UserDepartments
         },
+        {
+          path: '/profile',
+          name: 'Profile',
+          component: UserProfile
+        }
         
       ],
     },
