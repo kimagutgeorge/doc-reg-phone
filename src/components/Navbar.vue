@@ -15,7 +15,7 @@
                 <router-link to="/documents" class="row flex-no-wrap p-2 nav-item text-third" active-class="bg-third" @click="$emit('toggle_nav_bar')">
                     <li class="col-10 ">
                         <!-- <router-link to="" class="text-third flex-no-wrap"> -->
-                            <i class="fa-solid fa-home text-third"></i>
+                            <i class="fa-solid fa-file text-third"></i>
                             <span class="ms-2 custom-fw-bold">
                                 Documents
                             </span>
